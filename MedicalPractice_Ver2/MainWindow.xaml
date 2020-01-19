@@ -1,0 +1,38 @@
+﻿<Window x:Class="MedicalPractice_Ver2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalPractice_Ver2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="676.316" Width="1200" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#FF406D8C" Grid.Column="0"/>
+        <!--image here for logo-->
+        <Grid Grid.Column="0">
+            <Grid Background="#FF1F232E">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#FF406D8C"/>
+                <Button x:Name="btnDashboard" Content="Dashboard" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" Height="32" Grid.Row="2" FontSize="14" FontWeight="Bold" FontFamily="Segoe UI Semibold" Foreground="White" Background="#FF273049" BorderThickness="0" Width="180"/>
+                <Button x:Name="btnUsers" Content="Users" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" Width="180" Height="32" Grid.Row="3" FontSize="14" FontWeight="Bold" FontFamily="Segoe UI Semibold" Foreground="White" Background="#FF273049" BorderThickness="0" Click="BtnUsers_Click"/>
+                <Button x:Name="btnAppointments" Content="Appointments" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" Width="180" Height="32" Grid.Row="4" FontSize="14" FontWeight="Bold" FontFamily="Segoe UI Semibold" Foreground="White" Background="#FF273049" BorderThickness="0" Click="BtnAppointments_Click"/>
+                <Button x:Name="btnLogout" Content="Logout" HorizontalAlignment="Left" Margin="0,322,0,0" VerticalAlignment="Top" Width="180" Height="32" Grid.Row="5" FontSize="14" FontWeight="Bold" FontFamily="Segoe UI Semibold" Foreground="White" Background="#FF273049" BorderThickness="0"/>
+            </Grid>
+           
+        </Grid>
+        <Grid Grid.Column="1">
+            <Frame Name="Main" NavigationUIVisibility="Hidden" Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</Window>

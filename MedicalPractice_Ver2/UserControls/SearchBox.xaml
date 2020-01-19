@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="MedicalPractice_Ver2.UserControls.SearchBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MedicalPractice_Ver2.UserControls"
+             mc:Ignorable="d" d:DesignWidth="500" Height="46">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="301*"/>
+            <ColumnDefinition Width="149*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding SearchInput}" VerticalAlignment="Top" Width="324" VerticalContentAlignment="Center"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="#FF1F232E" Height="25" BorderThickness="0,0,0,4" BorderBrush="#FF406D8C" Foreground="White" Command="{Binding Search}"/>
+    </Grid>
+</UserControl>
