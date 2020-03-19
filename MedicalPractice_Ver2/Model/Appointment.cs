@@ -16,6 +16,13 @@ namespace MedicalPractice_Ver2.Model
         public TimeSpan startTime { get; set; }
         public TimeSpan endTime { get; set; }
         public string notes { get; set; }
-        
+        public string status { get; set; }
+
+    }
+
+    class AppointmentType
+    {
+        public int typeID { get; set; }
+        public string typeName { get; set; }
     }
 }

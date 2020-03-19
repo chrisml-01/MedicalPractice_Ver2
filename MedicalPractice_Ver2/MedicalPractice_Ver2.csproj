@@ -40,6 +40,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,14 +73,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CRUDValidator.cs" />
     <Compile Include="Commands\NotifyClass.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="DB\AppointmentDB.cs" />
+    <Compile Include="DB\AvailabilityDB.cs" />
     <Compile Include="DB\PatientDB.cs" />
     <Compile Include="DB\PractitionerDB.cs" />
     <Compile Include="DB\SQLHelper.cs" />
     <Compile Include="DB\StaffDB.cs" />
     <Compile Include="Model\Appointment.cs" />
+    <Compile Include="Model\Availability.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\Practitioner.cs" />
     <Compile Include="Model\Staff.cs" />
@@ -89,15 +93,27 @@
     <Compile Include="UserControls\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AppointmentVM.cs" />
     <Compile Include="ViewModel\PatientVM.cs" />
+    <Compile Include="ViewModel\PractitionerVM.cs" />
+    <Compile Include="ViewModel\StaffVM.cs" />
     <Compile Include="View\AppointmentManagement.xaml.cs">
       <DependentUpon>AppointmentManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LogOnForm.xaml.cs">
       <DependentUpon>LogOnForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientList.xaml.cs">
+      <DependentUpon>PatientList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientManagement.xaml.cs">
       <DependentUpon>PatientManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PractitionerManagement.xaml.cs">
+      <DependentUpon>PractitionerManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffManagement.xaml.cs">
+      <DependentUpon>StaffManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UsersManagement.xaml.cs">
       <DependentUpon>UsersManagement.xaml</DependentUpon>
@@ -130,7 +146,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PatientList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PatientManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PractitionerManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,13 +11,12 @@ using System.Windows;
 
 namespace MedicalPractice_Ver2.ViewModel
 {
-    class PatientVM : NotifyClass
+    class StaffVM : NotifyClass
     {
-        private ObservableCollection<Patient> _patients = new ObservableCollection<Patient>();
-        private Patient _selectedPatient;
+        private ObservableCollection<Staff> _staff = new ObservableCollection<Staff>();
+        private Staff _selectedStaff;
         private int rowsAffected;
         private string _searchInput;
-        
 
         //string input to bind to search input from uc: SearchBox
         public string SearchInput
@@ -25,115 +24,109 @@ namespace MedicalPractice_Ver2.ViewModel
             get { return _searchInput; }
             set { _searchInput = value; }
         }
-       
-        public ObservableCollection<Patient> Patients
+
+        public ObservableCollection<Staff> Staff
         {
-            get { return _patients; }
-            set { _patients = value; }
+            get { return _staff; }
+            set { _staff = value; }
         }
 
-        //SelectedPatient to bind to DataGrid
-        public Patient SelectedPatient
+        public Staff SelectedStaff
         {
-            get { return _selectedPatient; }
-            set { _selectedPatient = value;
-                OnPropertyChanged("SelectedPatient");
+            get { return _selectedStaff; }
+            set
+            {
+                _selectedStaff = value;
+                OnPropertyChanged("SelectedStaff");
             }
         }
 
         //Constructor
-        public PatientVM()
+        public StaffVM()
         {
-            //display all patients to the datagrid
-            DisplayAllPatients();
+            DisplayAllStaff();
         }
-
 
         //BUTTON COMMANDS FOR UC: Buttons
         public RelayCommand Save
         {
-            get { return new RelayCommand(InsertPatient, true); }
+            get { return new RelayCommand(InsertStaff, true); }
         }
         public RelayCommand Update
         {
-            get { return new RelayCommand(UpdatePatient, true); }
+            get { return new RelayCommand(UpdateStaff, true); }
         }
         public RelayCommand Delete
         {
-            get { return new RelayCommand(DeletePatient, true); }
+            get { return new RelayCommand(DeleteStaff, true); }
         }
         public RelayCommand Search
         {
-            get { return new RelayCommand(SearchPatient, true); }
+            get { return new RelayCommand(SearchStaff, true); }
         }
         public RelayCommand AddNew
         {
-            get { return new RelayCommand(AddPatient, true); }
+            get { return new RelayCommand(AddNewStaff, true); }
         }
 
-        //Method to displayAllPatients 
-        public void DisplayAllPatients()
+        //Method to displayAllStaff 
+        public void DisplayAllStaff()
         {
-            var allPatients = PatientDB.GetAllPatients();
-            foreach (var item in allPatients)
+            var allStaff = StaffDB.GetAllStaff();
+            foreach (var item in allStaff)
             {
-                Patients.Add(item);
+                Staff.Add(item);
             }
         }
 
         //Method to call the searchpatient instance from the PatientDB.
         //This method will be attached to the button 'Search' command.
-        private void SearchPatient()
+        private void SearchStaff()
         {
-            Patients.Clear();
-            var search = PatientDB.SearchPatient(SearchInput);
-            foreach(var item in search)
+            Staff.Clear();
+            var search = StaffDB.SearchStaff(SearchInput);
+            foreach (var item in search) 
             {
-                Patients.Add(item);
+                Staff.Add(item);
             }
         }
 
-        //Method to call the instance of insertPatient from the PatientDB.
-        //This method will be attached to the button 'Insert' command.
-        private void InsertPatient()
+        private void InsertStaff()
         {
             try
             {
-                rowsAffected = PatientDB.insertPatient(SelectedPatient);
+                rowsAffected = StaffDB.insertStaff(SelectedStaff);
 
-                Patients.Clear();
-                DisplayAllPatients();
+                Staff.Clear();
+                DisplayAllStaff();
 
                 if (rowsAffected != 0)
                 {
-                    MessageBox.Show("Patient Added");
+                    MessageBox.Show("Staff Added");
                 }
                 else
                 {
                     MessageBox.Show("Insert Failed");
-                }             
-                
+                }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
-            
         }
 
-
-        private void UpdatePatient()
+        private void UpdateStaff()
         {
             try
             {
-                rowsAffected = PatientDB.updatePatient(SelectedPatient);
+                rowsAffected = StaffDB.updateStaff(SelectedStaff);
 
-                Patients.Clear();
-                DisplayAllPatients();
+                Staff.Clear();
+                DisplayAllStaff();
 
                 if (rowsAffected != 0)
                 {
-                    MessageBox.Show("Patient Updated");
+                    MessageBox.Show("Staff Updated");
                 }
                 else
                 {
@@ -144,57 +137,52 @@ namespace MedicalPractice_Ver2.ViewModel
             {
                 throw e;
             }
-
         }
 
-        private void DeletePatient()
+        private void DeleteStaff()
         {
             try
             {
                 //If button is clicked, a messagebox will be shown to make sure that the user wants to delete the patient
                 MessageBoxResult result = MessageBox.Show("Are you sure you want to delete the patient?", "Delete", MessageBoxButton.YesNoCancel, MessageBoxImage.Exclamation, MessageBoxResult.No);
 
-                if(result == MessageBoxResult.Yes)
+                if (result == MessageBoxResult.Yes)
                 {
-                    rowsAffected = PatientDB.deletePatient(SelectedPatient);
+                    rowsAffected = StaffDB.deleteStaff(SelectedStaff);
 
-                    Patients.Clear();
-                    DisplayAllPatients();
+                    Staff.Clear();
+                    DisplayAllStaff();
 
                     if (rowsAffected != 0)
                     {
-                        MessageBox.Show("Patient Deleted");
+                        MessageBox.Show("Staff Deleted");
                     }
                     else
                     {
                         MessageBox.Show("Delete Failed");
                     }
                 }
-                
             }
             catch (Exception e)
             {
-                throw e;
+                MessageBox.Show(e.ToString());
             }
-
         }
 
-        private void AddPatient()
+        private void AddNewStaff()
         {
-            Patient patient = new Patient();
+            Staff staff = new Staff();
 
             //adding additional row after the last row
-            int lastRow = Patients.Count;
+            int lastRow = Staff.Count;
 
             for (int i = 0; i <= lastRow; i++)
             {
                 if (i == lastRow)
                 {
-                    Patients.Add(patient);                   
+                    Staff.Add(staff);
                 }
             }
-                      
         }
-
     }
 }

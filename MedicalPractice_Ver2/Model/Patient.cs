@@ -9,6 +9,9 @@ namespace MedicalPractice_Ver2.Model
 {
     class Patient : NotifyClass
     {
+        private CRUDValidator validator;
+        public int result;
+
         public int patientID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -22,13 +25,21 @@ namespace MedicalPractice_Ver2.Model
         public string email { get; set; }
         public string medicareNum { get; set; }
         public string notes { get; set; }
+        
 
-        public int PatientID
+        public int ValidatePatient()
         {
-            get { return patientID; }
-            set { patientID = value;
-                OnPropertyChanged("patientID");
+            
+            if(validator.Name(firstName, lastName) == false)
+            {
+                result = 0;
             }
+            else
+            {
+                result = 1;
+            }
+
+            return result;
         }
     }
 }

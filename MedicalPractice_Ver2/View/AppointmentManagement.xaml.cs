@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalPractice_Ver2.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,8 @@ namespace MedicalPractice_Ver2.View
         {
             InitializeComponent();
 
-           
+            DataContext = new AppointmentVM();
+            dgPractitioner.DataContext = new PractitionerVM();
         }
     }
 }

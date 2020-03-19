@@ -182,5 +182,11 @@ namespace MedicalPractice_Ver2.DB
             //execute SQL and return value
             return intRetValue;
         }    
+
+        public int? getIntfromDB(object value)
+        {
+            if (value == DBNull.Value) return null;
+            return Convert.ToInt32(value);
+        }
     }
 }

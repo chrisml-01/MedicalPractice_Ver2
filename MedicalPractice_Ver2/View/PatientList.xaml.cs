@@ -1,5 +1,4 @@
-﻿using MedicalPractice_Ver2.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MedicalPractice_Ver2.View
 {
     /// <summary>
-    /// Interaction logic for Users_View.xaml
+    /// Interaction logic for PatientList.xaml
     /// </summary>
-    public partial class UsersManagement : Page
+    public partial class PatientList : Window
     {
-        public UsersManagement()
+        public PatientList()
         {
             InitializeComponent();
-            DataContext = new PatientVM();
-
-            Patient.Content = new PatientManagement();
-            Staff.Content = new StaffManagement();
-            Practitioner.Content = new PractitionerManagement();
         }
     }
 }

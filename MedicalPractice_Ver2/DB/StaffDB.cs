@@ -16,7 +16,7 @@ namespace MedicalPractice_Ver2.DB
 
         public static ObservableCollection<Staff> GetAllStaff()
         {
-            string strQuery = "SELECT patientID, firstname, lastname, birthday, street, suburb, state, postcode, mobilenum, homenum, email, medicarenum, notes from patient";
+            string strQuery = "SELECT staffID, firstname, lastname, birthdate, street, suburb, state, postcode, mobilenum, homenum, email, username, password from staff";
 
             DataTable dt = new DataTable();
             dt = _DB.executeSQL(strQuery);
@@ -46,11 +46,11 @@ namespace MedicalPractice_Ver2.DB
             return allstaff;
         }
 
-        public int insertStaff(Staff staff)
+        public static int insertStaff(Staff staff)
         {
             int rowsAffected;
 
-            string strQuery = "INSERT INTO Staff (firstname, lastname, birthday, street, suburb, state, postcode, mobilenum, homenum, email, username, password) " +
+            string strQuery = "INSERT INTO Staff (firstname, lastname, birthdate, street, suburb, state, postcode, mobilenum, homenum, email, username, password) " +
                                 "VALUES (@firstname, @lastname, @birthday, @street, @suburb, @state, @postcode, @mobilenum, @homenum, @email, @username, @password)";
 
             //parameters
@@ -87,17 +87,34 @@ namespace MedicalPractice_Ver2.DB
             return rowsAffected;
         }
 
-        public int updateStaff(Staff staff)
+        public static int deleteStaff(Staff staff)
         {
             int rowsAffected;
 
-            string strQuery = "UPDATE Staff SET firstname = @firstname, lastname = @lastname, birthday = @birthday, street = @street, suburb = @suburb, " +
+            string strQuery = "delete from staff where staffID = @staffID";
+
+            //parameter
+            SqlParameter[] objParams;
+            objParams = new SqlParameter[1];
+            objParams[0] = new SqlParameter("@staffID", DbType.Int32);
+            objParams[0].Value = staff.staffID;
+
+            rowsAffected = _DB.NonQuerySql(strQuery, objParams);
+
+            return rowsAffected;
+        }
+
+        public static int updateStaff(Staff staff)
+        {
+            int rowsAffected;
+
+            string strQuery = "UPDATE Staff SET firstname = @firstname, lastname = @lastname, birthdate = @birthday, street = @street, suburb = @suburb, " +
                                "state = @state, postcode = @postcode, mobilenum = @mobilenum, homenum = @homenum, email = @email, username = @username, password = @password " +
                                "WHERE staffID = @staffID";
 
             //parameters
             SqlParameter[] objParams;
-            objParams = new SqlParameter[12];
+            objParams = new SqlParameter[13];
             objParams[0] = new SqlParameter("@firstname", DbType.String);
             objParams[0].Value = staff.firstName;
             objParams[1] = new SqlParameter("@lastname", DbType.String);
@@ -131,6 +148,38 @@ namespace MedicalPractice_Ver2.DB
             return rowsAffected;
         }
 
+        public static ObservableCollection<Staff> SearchStaff(string firstname)
+        {
+            //get all the details of the searched name of the client
+            string strQuery = "SELECT * FROM staff WHERE FirstName LIKE '%" + firstname + "%';";
+
+            DataTable dt = new DataTable();
+            dt = _DB.executeSQL(strQuery);
+
+            var allstaff = new ObservableCollection<Staff>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Staff staff = new Staff()
+                {
+                    staffID = Convert.ToInt32(dr[0]),
+                    firstName = dr[1].ToString(),
+                    lastName = dr[2].ToString(),
+                    DOB = (DateTime)dr[3],
+                    street = dr[4].ToString(),
+                    suburb = dr[5].ToString(),
+                    state = dr[6].ToString(),
+                    postCode = dr[7].ToString(),
+                    mobileNum = dr[8].ToString(),
+                    homeNum = dr[9].ToString(),
+                    email = dr[10].ToString(),
+                    username = dr[11].ToString(),
+                    password = dr[12].ToString()
+                };
+                allstaff.Add(staff);
+            }
+
+            return allstaff;
+        }
 
     }
 }

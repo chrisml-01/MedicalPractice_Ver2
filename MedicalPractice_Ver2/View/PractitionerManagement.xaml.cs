@@ -17,18 +17,15 @@ using System.Windows.Shapes;
 namespace MedicalPractice_Ver2.View
 {
     /// <summary>
-    /// Interaction logic for Users_View.xaml
+    /// Interaction logic for PractitionerManagement.xaml
     /// </summary>
-    public partial class UsersManagement : Page
+    public partial class PractitionerManagement : Page
     {
-        public UsersManagement()
+        public PractitionerManagement()
         {
             InitializeComponent();
-            DataContext = new PatientVM();
 
-            Patient.Content = new PatientManagement();
-            Staff.Content = new StaffManagement();
-            Practitioner.Content = new PractitionerManagement();
+            DataContext = new PractitionerVM();
         }
     }
 }

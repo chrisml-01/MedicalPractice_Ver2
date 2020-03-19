@@ -16,7 +16,7 @@ namespace MedicalPractice_Ver2.DB
 
         public static ObservableCollection<Practitioner> GetAllPractitioners()
         {
-            string strQuery = "SELECT practitionerID, firstname, lastname, birthday, street, suburb, state, postcode, mobilenum, homenum, email, medRegNum, pracType, username, password from practitioner";
+            string strQuery = "SELECT practitionerID, firstname, lastname, birthdate, street, suburb, state, postcode, mobilenum, homenum, email, medRegNum, pracType, username, password from practitioner";
 
             DataTable dt = new DataTable();
             dt = _DB.executeSQL(strQuery);
@@ -38,7 +38,7 @@ namespace MedicalPractice_Ver2.DB
                     homeNum = dr[9].ToString(),
                     email = dr[10].ToString(),
                     medregNum = dr[11].ToString(),
-                    practType = dr[12].ToString(),
+                    practType = Convert.ToInt32(dr[12]),
                     username = dr[13].ToString(),
                     password = dr[14].ToString()
                 };
@@ -48,12 +48,12 @@ namespace MedicalPractice_Ver2.DB
             return practitioners;
         }
 
-        public int insertPractitioner(Practitioner practitioner)
+        public static int insertPractitioner(Practitioner practitioner)
         {
             int rowsAffected;
 
-            string strQuery = "INSERT INTO Practitioner (firstname, lastname, birthday, street, suburb, state, postcode, mobilenum, homenum, email, medRegNum, pracType, username, password) " +
-                                "VALUES (@firstname, @lastname, @birthday, @street, @suburb, @state, @postcode, @mobilenum, @homenum, @email, @medRegNum, @pracType, @username, @password)";
+            string strQuery = "INSERT INTO Practitioner (firstname, lastname, birthdate, street, suburb, state, postcode, mobilenum, homenum, email, medRegNum, pracType, username, password) " +
+                                "VALUES (@firstname, @lastname, @birthday, @street, @suburb, @state, @postcode, @mobilenum, @homenum, @email, @medRegNum, @pracType, @username, @password); SELECT SCOPE_IDENTITY()";
 
             //parameters
             SqlParameter[] objParams;
@@ -87,22 +87,25 @@ namespace MedicalPractice_Ver2.DB
             objParams[13] = new SqlParameter("@password", DbType.String);
             objParams[13].Value = practitioner.password;
 
-            rowsAffected = _DB.NonQuerySql(strQuery, objParams);
+            //rowsAffected = _DB.NonQuerySql(strQuery, objParams);
+            object practId = _DB.scalarSQL(strQuery, objParams);
 
-            return rowsAffected;
+            practitioner.practitionerID = Convert.ToInt32(practId);
+
+            return practitioner.practitionerID;
         }
 
-        public int updatePractitioner(Practitioner practitioner)
+        public static int updatePractitioner(Practitioner practitioner)
         {
             int rowsAffected;
 
-            string strQuery = "UPDATE Practitioner SET firstname = @firstname, lastname = @lastname, birthday = @birthday, street = @street, suburb = @suburb, " +
+            string strQuery = "UPDATE Practitioner SET firstname = @firstname, lastname = @lastname, birthdate = @birthday, street = @street, suburb = @suburb, " +
                                 "state = @state, postcode = @postcode, mobilenum = @mobilenum, homenum = @homenum, email = @email, medRegNum = @medRegNum, pracType = @pracType, " +
                                 "username = @username, password = @password WHERE practitionerID = @practitionerID";
 
             //parameters
             SqlParameter[] objParams;
-            objParams = new SqlParameter[14];
+            objParams = new SqlParameter[15];
             objParams[0] = new SqlParameter("@firstname", DbType.String);
             objParams[0].Value = practitioner.firstName;
             objParams[1] = new SqlParameter("@lastname", DbType.String);
@@ -131,13 +134,47 @@ namespace MedicalPractice_Ver2.DB
             objParams[12].Value = practitioner.username;
             objParams[13] = new SqlParameter("@password", DbType.String);
             objParams[13].Value = practitioner.password;
-            objParams[13] = new SqlParameter("@practitionerID", DbType.Int32);
-            objParams[13].Value = practitioner.practitionerID;
+            objParams[14] = new SqlParameter("@practitionerID", DbType.Int32);
+            objParams[14].Value = practitioner.practitionerID;
 
             rowsAffected = _DB.NonQuerySql(strQuery, objParams);
 
             return rowsAffected;
         }
 
+        public static ObservableCollection<Practitioner> SearchPractitioner(string firstname)
+        {
+            //get all the details of the searched name of the client
+            string strQuery = "SELECT * FROM practitioner WHERE FirstName LIKE '%" + firstname + "%';";
+
+            DataTable dt = new DataTable();
+            dt = _DB.executeSQL(strQuery);
+
+            var practitioners = new ObservableCollection<Practitioner>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Practitioner practitioner = new Practitioner()
+                {
+                    practitionerID = Convert.ToInt32(dr[0]),
+                    firstName = dr[1].ToString(),
+                    lastName = dr[2].ToString(),
+                    DOB = (DateTime)dr[3],
+                    street = dr[4].ToString(),
+                    suburb = dr[5].ToString(),
+                    state = dr[6].ToString(),
+                    postCode = dr[7].ToString(),
+                    mobileNum = dr[8].ToString(),
+                    homeNum = dr[9].ToString(),
+                    email = dr[10].ToString(),
+                    medregNum = dr[11].ToString(),
+                    practType = Convert.ToInt32(dr[12]),
+                    username = dr[13].ToString(),
+                    password = dr[14].ToString()
+                };
+                practitioners.Add(practitioner);
+            }
+
+            return practitioners;
+        }
     }
 }

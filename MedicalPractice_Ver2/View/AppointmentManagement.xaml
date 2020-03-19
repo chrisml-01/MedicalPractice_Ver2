@@ -10,163 +10,90 @@
       Title="AppointmentManagement">
 
     <Grid>
-        <TabControl x:Name="AppntManagement" HorizontalAlignment="Left" Height="610" VerticalAlignment="Top" Width="980" Margin="10,10,0,0">
-            <TabItem Header="Add New" Width="80" Height="30">
-                <Grid Background="White">
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Label Content="AppointmentID:" HorizontalAlignment="Left" Margin="22,1,0,0" VerticalAlignment="Top" Width="100" Grid.Row="0" Height="26" Grid.ColumnSpan="2"/>
-                            <Label Content="Patient:" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" Width="56" Grid.Row="1" Height="26" Grid.ColumnSpan="2"/>
-                            <Label Content="Type:" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top" Width="71" Grid.Row="2" Height="26" Grid.ColumnSpan="2"/>
-                            <Label Content="Date:" HorizontalAlignment="Left" Margin="78,2,0,0" VerticalAlignment="Top" Width="71" Grid.Row="3" Height="26" Grid.ColumnSpan="2"/>
-                            <Label Content="Start Time:" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Top" Width="68" Grid.Row="4" Height="26"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="AppointmentID:" HorizontalAlignment="Left" Margin="22,1,0,0" VerticalAlignment="Top" Width="100" Grid.Row="0" Height="26" Grid.ColumnSpan="2"/>
+                    <Label Content="Patient:" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" Width="56" Grid.Row="1" Height="26" Grid.ColumnSpan="2"/>
+                    <Label Content="Practitioner:" HorizontalAlignment="Left" Margin="42,2,0,0" VerticalAlignment="Top" Width="76" Grid.Row="2" Height="26"/>
+                    <Label Content="Type:" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top" Width="71" Grid.Row="3" Height="26" Grid.ColumnSpan="2"/>
+                    <Label Content="Date:" HorizontalAlignment="Left" Margin="78,2,0,0" VerticalAlignment="Top" Width="71" Grid.Row="4" Height="26" Grid.ColumnSpan="2"/>
+                    <Label Content="Start Time:" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Top" Width="68" Grid.Row="5" Height="26"/>
 
-                            <Label Content="Notes:" HorizontalAlignment="Left" Margin="72,0,0,0" VerticalAlignment="Top" Width="47" Grid.Row="10" Height="26"/>
-                            <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="338" IsEnabled="False" VerticalContentAlignment="Center"/>
-                            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="338" VerticalContentAlignment="Center"/>
-                            <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="338" VerticalContentAlignment="Center"/>
-                            <DatePicker Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" VerticalAlignment="Top" Width="338"/>
-                            <Grid Grid.Row="4" Grid.Column="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="134*"/>
-                                    <ColumnDefinition Width="67*"/>
-                                    <ColumnDefinition Width="166*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131" VerticalContentAlignment="Center"/>
-                                <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="5,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131" VerticalContentAlignment="Center"/>
-                                <Label Content="End Time:" HorizontalAlignment="Left" Margin="4,1,0,0" VerticalAlignment="Top" Width="63" Height="26" Grid.Column="1"/>
-                            </Grid>
-                            <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="265" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="338"/>
-                        </Grid>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="100"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <mycontrols:SearchBox Margin="10,4,-10,0"/>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <Label Content="Patient List:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="185" FontSize="14"/>
-                            <DataGrid Margin="10,34,10,0" />
-
-                        </Grid>
-                        <Grid Grid.Row="2">
-                            <mycontrols:Buttons Margin="0,10,0,37"/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </TabItem>
-            <TabItem Header="All Unassigned Appointments" Width="auto">
-                <Grid Background="White">
-                    <Grid Background="White">
+                    <Label Content="Notes:" HorizontalAlignment="Left" Margin="72,0,0,0" VerticalAlignment="Top" Width="47" Grid.Row="6" Height="26"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" 
+                                     Text="{Binding SelectedAppointment.appointmentID}" VerticalAlignment="Top" Width="338" IsEnabled="False" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="txtPatient" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" 
+                                     Text="{Binding SelectedAppointment.patientID}" VerticalAlignment="Top" Width="338" VerticalContentAlignment="Center" />
+                    <TextBox x:Name="txtPractitioner" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" 
+                                     Text="{Binding SelectedPractitioner.practitionerID}" VerticalAlignment="Top" Width="338" VerticalContentAlignment="Center" />
+                    <Popup x:Name="patient_popup" PlacementTarget="{Binding txtPatient}"/>
+                    <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" Text="" VerticalAlignment="Top" Width="338" VerticalContentAlignment="Center"
+                                  ItemsSource="{Binding AppointmentTypes}"
+                                  DisplayMemberPath="typeName"
+                                  SelectedValuePath="typeID"
+                                  SelectedValue="{Binding SelectedAppointment.appntType}"/>
+                    <DatePicker Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" VerticalAlignment="Top" Width="338"
+                                        SelectedDate="{Binding SelectedAppointment.appntDate}"/>
+                    <Grid Grid.Row="5" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="65*"/>
+                            <ColumnDefinition Width="36*"/>
+                            <ColumnDefinition Width="89*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="1.7*"/>
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Label Content="AppointmentID:" HorizontalAlignment="Left" Margin="22,1,0,0" VerticalAlignment="Top" Width="100" Grid.Row="0" Height="26" Grid.ColumnSpan="2"/>
-                                <Label Content="Patient:" HorizontalAlignment="Left" Margin="65,1,0,0" VerticalAlignment="Top" Width="56" Grid.Row="1" Height="26" Grid.ColumnSpan="2"/>
-                                <Label Content="Type:" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top" Width="71" Grid.Row="2" Height="26" Grid.ColumnSpan="2"/>
-                                <Label Content="Date:" HorizontalAlignment="Left" Margin="78,2,0,0" VerticalAlignment="Top" Width="71" Grid.Row="3" Height="26" Grid.ColumnSpan="2"/>
-                                <Label Content="Start Time:" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Top" Width="68" Grid.Row="4" Height="26"/>
-
-                                <Label Content="Notes:" HorizontalAlignment="Left" Margin="72,0,0,0" VerticalAlignment="Top" Width="47" Grid.Row="5" Height="26"/>
-                                <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="338" IsEnabled="False" VerticalContentAlignment="Center"/>
-                                <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="338" VerticalContentAlignment="Center"/>
-                                <ComboBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" Text="" VerticalAlignment="Top" Width="338" VerticalContentAlignment="Center"/>
-                                <DatePicker Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" VerticalAlignment="Top" Width="338"/>
-                                <Grid Grid.Row="4" Grid.Column="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="134*"/>
-                                        <ColumnDefinition Width="67*"/>
-                                        <ColumnDefinition Width="166*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131" VerticalContentAlignment="Center"/>
-                                    <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="5,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131" VerticalContentAlignment="Center"/>
-                                    <Label Content="End Time:" HorizontalAlignment="Left" Margin="4,1,0,0" VerticalAlignment="Top" Width="63" Height="26" Grid.Column="1"/>
-                                </Grid>
-                                <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="172" Margin="0,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="338"/>
-                                <Grid Grid.Row="6" Grid.Column="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="114*"/>
-
-                                        <ColumnDefinition Width="130*"/>
-                                        <ColumnDefinition Width="123*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Button Content="Search" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="85" Grid.Column="0" Background="#FF1F232E" Height="25" BorderThickness="0,0,0,4" BorderBrush="#FF406D8C" Foreground="White"/>
-                                    <Button Content="Update" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85" Grid.Column="1" Background="#FF1F232E" Height="25" BorderThickness="0,0,0,4" BorderBrush="#FF406D8C" Foreground="White"/>
-                                    <Button Content="Delete" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85" Grid.Column="2" Background="#FF1F232E" Height="25" BorderThickness="0,0,0,4" BorderBrush="#FF406D8C" Foreground="White"/>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="1.5*"/>
-                                <RowDefinition Height="1.5*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <mycontrols:SearchBox Margin="10,4,-10,0"/>
-                            </Grid>
-                            <Grid Grid.Row="1">
-                                <Label Content="Unassigned Appointments:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="185" FontSize="14"/>
-                                <DataGrid Margin="10,29,10,10" />
-
-                            </Grid>
-                            <Grid Grid.Row="2">
-                                <Label Content="Available Practitioner:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="185" FontSize="14"/>
-                                <DataGrid Margin="10,29,10,10" />
-
-                            </Grid>
-                        </Grid>
+                        <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="0,4,0,0" TextWrapping="Wrap" 
+                                         Text="{Binding SelectedAppointment.startTime}" VerticalAlignment="Top" Width="131" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="5,4,0,0" TextWrapping="Wrap" 
+                                         Text="{Binding SelectedAppointment.endTime}" VerticalAlignment="Top" Width="131" VerticalContentAlignment="Center"/>
+                        <Label Content="End Time:" HorizontalAlignment="Left" Margin="4,1,0,0" VerticalAlignment="Top" Width="63" Height="26" Grid.Column="1"/>
                     </Grid>
+                    <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Height="273" Margin="0,4,0,0" TextWrapping="Wrap" 
+                                     Text="{Binding SelectedAppointment.notes}" VerticalAlignment="Top" Width="338"/>
                 </Grid>
-
-            </TabItem>
-        </TabControl>
-
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <mycontrols:SearchBox Margin="10,8,-10,-9"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <DataGrid x:Name="dgAppointments" Margin="10,10,16,5"
+                                      ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" IsReadOnly="True"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <DataGrid x:Name="dgPractitioner" Margin="10,10,15,5"
+                                      ItemsSource="{Binding Practitioners}" SelectedItem="{Binding SelectedPractitioner, Mode=TwoWay}" IsReadOnly="True"/>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <mycontrols:Buttons Margin="0,10,0,37"/>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
